@@ -1,0 +1,25 @@
+//! Chỉ import đường dẫn tới các file con
+//! Không điền bất kỳ code css nào
+
+//? Helper
+@import "./Helper/variable";
+@import "./Helper/mixin";
+
+//? Vendors
+// Import các file scss của thư viện
+// Link CDN thì lên file HTML
+
+//? Base
+@import "./Base/reset";
+@import "./Base/customize";
+
+//? Components
+@import "./Components/button";
+
+//? Layouts
+@import "./Layouts/header";
+@import "./Layouts/carousel";
+
+//? Pages
+
+//? Theme

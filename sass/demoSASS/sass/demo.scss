@@ -1,0 +1,85 @@
+// Variable
+//? Ưu điểm biến của sass
+//1. Chạy được cho tất cả các trình duyệt
+//2. Dễ chỉnh sửa
+
+$color: red;
+$bg-color: blue;
+
+h1 {
+    color: red;
+    background-color: $bg-color;
+}
+
+//? Nesting selector
+// Ưu điểm: Giống cấu trúc thẻ của html => Dễ đọc code của thẻ cha và thẻ con
+// Lưu ý: Không lồng quá nhiều cấp thẻ cha con (Nên tối đa cấp thẻ 5)
+
+.sec1 {
+    p {
+        color: $color;
+    }
+    button {
+        background-color: $bg-color;
+
+        // &: Đại diện cho thẻ cha (button)
+        // &: Parent selector
+        &:hover {
+            background-color: hotpink;
+        }
+    }
+}
+
+//? Extend: Kế thừa
+// Tiết kiệm code, có thể tự thêm các code mới mà vẫn có được các code có sẵn
+.sec2 {
+    @extend .sec1;
+    a {
+        color: yellowgreen;
+    }
+}
+
+//? Mixin
+// 1. Không có tham số
+// 2. Có tham số
+
+// Không có tham số => Vì có extend dễ dùng hơn
+// Khai báo
+@mixin styleSection {
+    p {
+        color: $color;
+    }
+    button {
+        background-color: $bg-color;
+
+        &:hover {
+            background-color: hotpink;
+        }
+    }
+}
+
+// Sử dụng
+.sec3 {
+    @include styleSection;
+}
+
+// Có tham số
+//? Tạo style cho sec4 + sec5
+//? Cả sec4 và sec5 đều cần thêm bg-color, color nhưng giá trị màu khác nhau
+//? Phân tích các thuộc tính chung giữa các section
+//? Khai báo tham số cho các thuộc tính cần đổi giá trị
+
+@mixin newStyleSection($bg-color, $color) {
+    p {
+        background-color: $bg-color;
+        color: $color;
+    }
+}
+
+.sec4 {
+    @include newStyleSection(yellow, red);
+}
+
+.sec5 {
+    @include newStyleSection(hotpink, cyan);
+}

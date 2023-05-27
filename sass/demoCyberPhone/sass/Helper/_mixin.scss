@@ -1,0 +1,38 @@
+@mixin styleText($color, $fs, $fw) {
+    color: $color;
+    font-size: $fs;
+    font-weight: $fw;
+}
+
+@mixin styleBtn($bg, $radius, $border, $py, $px) {
+    background: $bg;
+    border-radius: $radius;
+    border: $border;
+    padding: $py $px;
+}
+
+//? Thêm hover cho button
+// C1: Khai báo hover vào trong mixin styleBtn
+// => Không nên dùng vì quá nhiều tham số
+
+// C2: Tạo mixin mới định nghĩa style hover
+
+@mixin styBtnHover($bg-hover, $bd-hover, $color-hover) {
+    background: $bg-hover;
+    border-color: $bd-hover;
+    color: $color-hover;
+}
+
+// $screen: Tên màn hình muốn lấy kích thước
+@mixin  responsive($screen) {
+    @if (map-has-key($map: $breakpoints, $key: $screen)) {
+        // Tìm thấy tên màn hình trong danh sách của breakpoints
+        $value: map-get($map: $breakpoints, $key: $screen);
+        @media screen and (max-width: $value) {
+            @content;
+        }
+    }
+    @else {
+        @warn "Sai tên màn hình";
+    }
+}

@@ -1,0 +1,8 @@
+.testClass {
+    font-size: 60px;
+    color: red;
+}
+
+.hidden {
+    opacity: 0;
+}
